@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BBC Stats Seminar</title>
+    <link>https://bbcstats.brandonlebeau.org/</link>
+      <atom:link href="https://bbcstats.brandonlebeau.org/index.xml" rel="self" type="application/rss+xml" />
+    <description>BBC Stats Seminar</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 15 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://bbcstats.brandonlebeau.org/media/blue-balloon.jpg</url>
+      <title>BBC Stats Seminar</title>
+      <link>https://bbcstats.brandonlebeau.org/</link>
+    </image>
+    
+    <item>
+      <title>Visualizing Distributions</title>
+      <link>https://bbcstats.brandonlebeau.org/materials/01-visualize-dist/</link>
+      <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://bbcstats.brandonlebeau.org/materials/01-visualize-dist/</guid>
+      <description>
+&lt;script src=&#34;https://bbcstats.brandonlebeau.org/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&#34;visualizing-distributions&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Visualizing Distributions&lt;/h1&gt;
+&lt;p&gt;There are some classical visualization tools to explore distributions, both univariate (one variable) and multivariate (more than one variable). Histograms are commonly used for univariate distributions and boxplots are a historical graphic for multivariate visualization.&lt;/p&gt;
+&lt;div id=&#34;load-some-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Load some data&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.1.1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggformula)
+library(palmerpenguins)
+
+theme_set(theme_bw(base_size = 16))
+
+head(penguins)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;           &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt;            &amp;lt;int&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &amp;lt;NA&amp;gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is a histogram exploring the body mass of the penguins.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_histogram(~ body_mass_g, data = penguins, color = &amp;#39;black&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Body Mass (in grams)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing non-finite values (stat_bin).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://bbcstats.brandonlebeau.org/materials/01-visualize-dist_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;What are the weaknesses of the histogram?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_histogram(~ body_mass_g, data = penguins, color = &amp;#39;black&amp;#39;, 
+             binwidth = 50) %&amp;gt;%
+  gf_labs(x = &amp;quot;Body Mass (in grams)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing non-finite values (stat_bin).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://bbcstats.brandonlebeau.org/materials/01-visualize-dist_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;An alternative is the density curve which uses kernel density estimation to get a curve. The details of the kernel density estimation isn’t overly important, and it is possible to change the estimation. The default estimation works pretty well however.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_density(~ body_mass_g, data = penguins) %&amp;gt;%
+  gf_labs(x = &amp;quot;Body Mass (in grams)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2 rows containing non-finite values (stat_density).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://bbcstats.brandonlebeau.org/materials/01-visualize-dist_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multivariate-thinking&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multivariate Thinking&lt;/h2&gt;
+&lt;p&gt;In general, exploring univariate distributions are important, but in most situations, it is also important to explore these distributions in a multivariate framework. This means, exploring the distribution of the outcome attribute by other attributes.&lt;/p&gt;
+&lt;p&gt;** Insert interactive components**&lt;/p&gt;
+&lt;p&gt;The boxplot is one way to do this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_boxplot(@@ ~ body_mass_g, data = penguins) %&amp;gt;%
+  gf_labs(x = &amp;quot;Body Mass (in grams)&amp;quot;,
+          y = &amp;quot;$$&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Boxplots are simple representations, but since they are only based on 5 numbers, can be too simple.&lt;/p&gt;
+&lt;p&gt;Density plots for each group could be explored, but can get difficult to interpret with many groups. Violin plots (or a related sina plot) are the solution.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(@@ ~ body_mass_g, data = penguins, fill = &amp;#39;gray80&amp;#39;) %&amp;gt;%
+  gf_labs(x = &amp;quot;Body Mass (in grams)&amp;quot;,
+          y = &amp;quot;$$&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(@@ ~ body_mass_g, data = penguins, fill = &amp;#39;gray80&amp;#39;,
+          draw_quantiles = c(0.1, 0.5, 0.9)) %&amp;gt;%
+  gf_labs(x = &amp;quot;Body Mass (in grams)&amp;quot;,
+          y = &amp;quot;$$&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggforce)
+
+gf_sina(body_mass_g ~ @@, data = penguins) %&amp;gt;%
+  gf_labs(y = &amp;quot;Body Mass (in grams)&amp;quot;,
+          x = &amp;quot;$$&amp;quot;) %&amp;gt;%
+  gf_refine(coord_flip())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gf_violin(body_mass_g ~ species, data = penguins) %&amp;gt;%
+  gf_sina(body_mass_g ~ species, data = penguins) %&amp;gt;%
+  gf_labs(y = &amp;quot;Body Mass (in grams)&amp;quot;,
+          x = &amp;quot;$$&amp;quot;) %&amp;gt;%
+  gf_refine(coord_flip())&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
