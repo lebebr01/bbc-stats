@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Materials">
+  <meta name="description" content="Visualizing Practice">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://bbcstats.brandonlebeau.org/materials/">
+  <link rel="alternate" hreflang="en-us" href="https://bbcstats.brandonlebeau.org/materials/02-vis-practices/">
 
   
 
@@ -258,8 +258,6 @@
   
 
   
-  <link rel="alternate" href="/materials/index.xml" type="application/rss+xml" title="BBC Stats Seminar">
-  
 
   
   <link rel="manifest" href="/index.webmanifest">
@@ -268,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://bbcstats.brandonlebeau.org/materials/">
+  <link rel="canonical" href="https://bbcstats.brandonlebeau.org/materials/02-vis-practices/">
 
   
   
@@ -283,29 +281,34 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="BBC Stats Seminar">
-  <meta property="og:url" content="https://bbcstats.brandonlebeau.org/materials/">
-  <meta property="og:title" content="Materials | BBC Stats Seminar">
-  <meta property="og:description" content="Materials"><meta property="og:image" content="https://bbcstats.brandonlebeau.org/media/blue-balloon.jpg">
+  <meta property="og:url" content="https://bbcstats.brandonlebeau.org/materials/02-vis-practices/">
+  <meta property="og:title" content="Visualizing Practice | BBC Stats Seminar">
+  <meta property="og:description" content="Visualizing Practice"><meta property="og:image" content="https://bbcstats.brandonlebeau.org/media/blue-balloon.jpg">
   <meta property="twitter:image" content="https://bbcstats.brandonlebeau.org/media/blue-balloon.jpg"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2021-09-15T00:00:00&#43;00:00">
+    
+      <meta property="article:published_time" content="2021-09-30T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-09-30T00:00:00&#43;00:00">
   
 
   
 
 
 
-
   
 
 
   
 
 
+  
 
 
 
-  <title>Materials | BBC Stats Seminar</title>
+
+
+  <title>Visualizing Practice | BBC Stats Seminar</title>
 
 </head>
 
@@ -613,7 +616,7 @@
 
     
       <ul class="nav docs-sidenav">
-        <li class="active"><a href="/materials/">Materials</a></li>
+        <li class=""><a href="/materials/">Materials</a></li>
     
       
 
@@ -622,7 +625,7 @@
 
 
 
-  <li class=""><a href="/materials/02-vis-practices/">Visualizing Practice</a></li>
+  <li class="active"><a href="/materials/02-vis-practices/">Visualizing Practice</a></li>
 
       
     
@@ -643,7 +646,7 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">Contents</a></li>
       </ul>
 
-      <nav id="TableOfContents"></nav>
+      
 
       
     </div>
@@ -656,13 +659,145 @@
         <div class="docs-article-container">
           
 
-          <h1>Materials</h1>
+          <h1>Visualizing Practice</h1>
 
           <div class="article-style">
-            <p>The materials for the seminar will be posted to this site for permanent access. I also plan, if everyone is willing, to record the lectures and post those here too.</p>
-<ol>
-<li>Seminar 1 - <a href="01-visualize-dist/">Visualizing Distributions</a></li>
-</ol>
+            
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<div id="critiquing-poor-figures" class="section level1">
+<h1>Critiquing Poor Figures</h1>
+<p>This week, I was hoping to go through critiquing poor figures in an attempt to promote the creation of stronger figures to show the primary point without being misleading.</p>
+<p>Much of this content comes from best practices in data visualization written by Claus Wilke in his book <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a>.</p>
+<div id="principle-of-proportional-ink" class="section level2">
+<h2>Principle of Proportional Ink</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.1.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(ggformula)</code></pre>
+<pre><code>## Loading required package: ggstance</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggstance&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
+## 
+##     geom_errorbarh, GeomErrorbarh</code></pre>
+<pre><code>## Loading required package: scales</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre><code>## Loading required package: ggridges</code></pre>
+<pre><code>## 
+## New to ggformula?  Try the tutorials: 
+##  learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
+##  learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
+<pre class="r"><code>library(nycflights13)
+
+theme_set(theme_bw(base_size = 18))
+
+head(flights)</code></pre>
+<pre><code>## # A tibble: 6 × 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+## 1  2013     1     1      517            515         2      830            819
+## 2  2013     1     1      533            529         4      850            830
+## 3  2013     1     1      542            540         2      923            850
+## 4  2013     1     1      544            545        -1     1004           1022
+## 5  2013     1     1      554            600        -6      812            837
+## 6  2013     1     1      554            558        -4      740            728
+## # … with 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>avg_dist &lt;- flights %&gt;%
+  group_by(carrier) %&gt;%
+  summarise(avg_dist = mean(distance, na.rm = TRUE),
+            sd_dist = sd(distance, na.rm = TRUE)) %&gt;%
+  left_join(airlines) %&gt;%
+  filter(avg_dist &gt; 1000 &amp; avg_dist &lt; 4000)</code></pre>
+<pre><code>## Joining, by = &quot;carrier&quot;</code></pre>
+<pre class="r"><code>avg_dist</code></pre>
+<pre><code>## # A tibble: 7 × 4
+##   carrier avg_dist sd_dist name                  
+##   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                 
+## 1 AA         1340.   638.  American Airlines Inc.
+## 2 AS         2402      0   Alaska Airlines Inc.  
+## 3 B6         1069.   704.  JetBlue Airways       
+## 4 DL         1237.   660.  Delta Air Lines Inc.  
+## 5 F9         1620      0   Frontier Airlines Inc.
+## 6 UA         1529.   799.  United Air Lines Inc. 
+## 7 VX         2499.    88.0 Virgin America</code></pre>
+<pre class="r"><code>ggplot(avg_dist, aes(x = avg_dist, y = name)) +
+  geom_col() +
+  xlab(&quot;Average Distance Flown&quot;) + 
+  ylab(&quot;Airline Name&quot;) + 
+  coord_cartesian(xlim = c(1000, 2500))</code></pre>
+<p><img src="/materials/02-vis-practices_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="pitfalls-of-color-use" class="section level2">
+<h2>Pitfalls of color use</h2>
+<pre class="r"><code>avg_dist &lt;- flights %&gt;%
+  group_by(carrier) %&gt;%
+  summarise(avg_dist = mean(distance, na.rm = TRUE),
+            sd_dist = sd(distance, na.rm = TRUE),
+            avg_delay = mean(arr_delay, na.rm = TRUE)) %&gt;%
+  left_join(airlines) </code></pre>
+<pre><code>## Joining, by = &quot;carrier&quot;</code></pre>
+<pre class="r"><code>avg_dist</code></pre>
+<pre><code>## # A tibble: 16 × 5
+##    carrier avg_dist sd_dist avg_delay name                       
+##    &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                      
+##  1 9E          530.   322.      7.38  Endeavor Air Inc.          
+##  2 AA         1340.   638.      0.364 American Airlines Inc.     
+##  3 AS         2402      0      -9.93  Alaska Airlines Inc.       
+##  4 B6         1069.   704.      9.46  JetBlue Airways            
+##  5 DL         1237.   660.      1.64  Delta Air Lines Inc.       
+##  6 EV          563.   287.     15.8   ExpressJet Airlines Inc.   
+##  7 F9         1620      0      21.9   Frontier Airlines Inc.     
+##  8 FL          665.   161.     20.1   AirTran Airways Corporation
+##  9 HA         4983      0      -6.92  Hawaiian Airlines Inc.     
+## 10 MQ          570.   226.     10.8   Envoy Air                  
+## 11 OO          501.   206.     11.9   SkyWest Airlines Inc.      
+## 12 UA         1529.   799.      3.56  United Air Lines Inc.      
+## 13 US          553.   584.      2.13  US Airways Inc.            
+## 14 VX         2499.    88.0     1.76  Virgin America             
+## 15 WN          996.   410.      9.65  Southwest Airlines Co.     
+## 16 YV          375.   160.     15.6   Mesa Airlines Inc.</code></pre>
+<pre class="r"><code>ggplot(avg_dist, aes(x = avg_dist, y = avg_delay)) + 
+  geom_point(aes(color = name), size = 4) + 
+  xlab(&quot;Average Distance Flown&quot;) + 
+  ylab(&quot;Average Arrival Delay&quot;)</code></pre>
+<p><img src="/materials/02-vis-practices_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(flights, aes(x = distance, y = arr_delay, color = carrier)) + 
+  geom_point(size = 4) + 
+  xlab(&quot;Distance Flown&quot;) +
+  ylab(&quot;Arrival Delay&quot;)</code></pre>
+<pre><code>## Warning: Removed 9430 rows containing missing values (geom_point).</code></pre>
+<p><img src="/materials/02-vis-practices_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="visualize-uncertainty" class="section level2">
+<h2>Visualize Uncertainty</h2>
+<pre class="r"><code>ggplot(avg_dist, aes(x = avg_dist, y = name)) + 
+  geom_col() + 
+  xlab(&quot;Average Distance Flown&quot;) + 
+  ylab(&quot;&quot;)</code></pre>
+<p><img src="/materials/02-vis-practices_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
 
           </div>
 
@@ -677,6 +812,13 @@
 <div class="post-nav">
   
   
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/materials/01-visualize-dist/" rel="next">Visualizing Distributions</a>
+  </div>
+  
+  
 </div>
 
           </div>
@@ -684,7 +826,7 @@
         </div>
 
         <div class="body-footer">
-          <p>Last updated on Sep 15, 2021</p>
+          <p>Last updated on Sep 30, 2021</p>
 
           
 
