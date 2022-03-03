@@ -247,7 +247,10 @@ head(flights)&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Thu, 03 Mar 2022 00:00:00 +0000</pubDate>
       <guid>https://bbcstats.brandonlebeau.org/materials/03-propensity/</guid>
       <description>&lt;h1 id=&#34;propensity-scores&#34;&gt;Propensity Scores&lt;/h1&gt;
-&lt;p&gt;The discussion surrounding propensity scores will use this working paper from the &lt;a href=&#34;https://caldercenter.org/publications/what-makes-gifted-education-exploring-how-participation-gifted-programs-affects&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CALDER Center&lt;/a&gt;. This is the suggested citation for this article: Benjamin Backes, James Cowan, Dan Goldhaber (2021). What Makes for a &amp;ldquo;Gifted&amp;rdquo; Education? Exploring How Participation in Gifted Programs Affects Students&#39; Learning Environments. CALDER Working Paper No. 256-0821.&lt;/p&gt;
+&lt;p&gt;The discussion surrounding propensity scores will use this working paper from the &lt;a href=&#34;https://caldercenter.org/publications/what-makes-gifted-education-exploring-how-participation-gifted-programs-affects&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CALDER Center&lt;/a&gt;. This is the suggested citation for this article:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Benjamin Backes, James Cowan, Dan Goldhaber (2021). What Makes for a &amp;ldquo;Gifted&amp;rdquo; Education? Exploring How Participation in Gifted Programs Affects Students&#39; Learning Environments. CALDER Working Paper No. 256-0821.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;why-propensity-scores&#34;&gt;Why Propensity Scores&lt;/h2&gt;
 &lt;p&gt;Data are from 300 school districts in Washington State.&lt;/p&gt;
 &lt;blockquote&gt;
