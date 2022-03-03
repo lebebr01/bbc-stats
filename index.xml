@@ -260,8 +260,10 @@ head(flights)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What could this imply more generally, about participation in gifted populations?&lt;/p&gt;
 &lt;h2 id=&#34;propensity-score-details&#34;&gt;Propensity Score Details&lt;/h2&gt;
 &lt;p&gt;Propensity scores use logistic regression where the outcome is binary.&lt;/p&gt;
-&lt;p&gt;1 = Participates in a gifted program
-0 = Does not participate in a gifted program.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1 = Participates in a gifted program&lt;/li&gt;
+&lt;li&gt;0 = Does not participate in a gifted program.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;The goal is to predict the likelihood a student, given the other student attributes in the data would participate in the gifted program. This results for each student, a probability score that represents the likelihood of them participating in a gifted program.&lt;/p&gt;
 &lt;p&gt;For example, imagine the two students predicted probability of being in a gifted program were:&lt;/p&gt;
 &lt;ol&gt;
